@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rajdhani:wght@500&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background: black;
+}
+
+/* ------------- HOME CONTAINER BG ------------- */
+.home-container {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  color: white;
+  background: linear-gradient(-45deg, #1f0036, #3b185f, #1a0033, #2c003e);
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ------------- NAVBAR ------------- */
+.navbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 18px 30px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #ffcc00;
+  white-space: nowrap;
+  text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00;
+  text-align: center;
+  width: 100%;
+}
+
+
+/* ------------- NAV BUTTONS ------------- */
+.nav-buttons {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.nav-buttons button {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #ffcc00;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: 'Rajdhani', sans-serif;
+  text-shadow: 0 0 8px #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✨ HOVER EFFECT: Zoom + Golden Glow */
+.nav-buttons button:hover {
+  background-color: rgba(255, 204, 0, 0.1);
+  color: #ffcc00;
+  box-shadow: 0 0 12px #ffcc00, 0 0 20px #ffcc00;
+  transform: scale(1.08);
+  outline: none;
+}
+
+.nav-buttons button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, #ffcc00 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  transform: scale(0.5);
+  z-index: 0;
+}
+
+.nav-buttons button:hover::before {
+  opacity: 0.3;
+  transform: scale(1);
+}
+
+/* ------------- SECTIONS ------------- */
+.section {
+  padding: 120px 30px 100px 30px;
+  min-height: 100vh;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.main-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 200px;
+}
+
+.animated-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3.5rem;
+  color: #fff;
+  text-shadow: 0 0 20px #ffcc00, 0 0 40px #ffcc00;
+  animation: glowTitle 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowTitle {
+  from { text-shadow: 0 0 10px #ffcc00; }
+  to { text-shadow: 0 0 25px #fff700, 0 0 35px #fff700; }
+}
+
+.subtext {
+  font-size: 1.5rem;
+  color: #ddd;
+  margin-top: 15px;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+}
+
+.module-section {
+  font-size: 2rem;
+  padding-top: 200px;
+  background-color: rgba(255, 255, 255, 0.03);
+  margin-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.module-section:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px #ffcc00, 0 0 40px #ffcc00;
+}
+
+.section-desc {
+  font-size: 1rem;
+  color: #ccc;
+  margin-top: 10px;
+  font-style: italic;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+}
+
+.section-desc i {
+  margin-right: 6px;
+  color: #ffcc00;
+}

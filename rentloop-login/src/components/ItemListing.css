@@ -1,0 +1,104 @@
+/* Container full screen with dark purple background */
+.item-listing-container {
+  min-height: 100vh; /* Full viewport height */
+  padding: 40px 20px;
+  background: #3b0a71; /* Dark purple background */
+  text-align: center;
+  box-sizing: border-box;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  color: #fff; /* default text color for headings */
+}
+
+/* Headings */
+.item-heading {
+  font-size: 32px;
+  color: #ffffff; /* Light golden for contrast */
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+}
+
+.item-subheading {
+  font-size: 18px;
+  color: #ffffff;
+  margin-bottom: 40px;
+  font-weight: 500;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Category Grid */
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  background: #3b0a71; /* ensures space between cards stays dark purple */
+  padding: 20px;
+  border-radius: 15px;
+}
+
+/* Category Cards */
+.category-cards {
+  background-color: #ffffff; /* White interior */
+  border-radius: 15px;
+  width: 160px;
+  padding: 25px 15px;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.6s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+/* Hover: smooth golden shimmer gradient */
+.category-card:hover {
+  background: linear-gradient(135deg, #ffd700, #fff8b0, #ffd700);
+  background-size: 400% 400%;
+  animation: shimmer 2s ease infinite;
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(255,215,0,0.6);
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Icons and Text inside card */
+.category-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+  color: #3b0a71; /* Dark purple icons for contrast inside white card */
+}
+
+.category-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #3b0a71; /* Dark purple text inside card */
+  transition: color 0.3s ease;
+}
+
+.category-card:hover .category-name {
+  color: #fdfdfd; /* text turns white on hover */
+}
+
+/* View More Button */
+.view-more-btn {
+  margin-top: 30px;
+  padding: 12px 24px;
+  background-color: #fbff00;
+  color: #3b0a71; /* Dark purple text */
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.4s ease;
+}
+
+.view-more-btn:hover {
+  background-color: #fff700;
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(135, 94, 168, 0.6);
+}

@@ -1,0 +1,236 @@
+/* .login-container {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.login-box {
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid #3b009b;
+  border-radius: 20px;
+  box-shadow: 0 0 25px #3b009b;
+  padding: 40px 30px;
+  width: 320px;
+  backdrop-filter: blur(12px);
+  text-align: center;
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 25px #a94eff, 0 0 50px #5e17eb;
+  }
+  50% {
+    box-shadow: 0 0 15px #a94eff, 0 0 30px #a94eff;
+  }
+}
+
+.login-heading {
+  font-size: 1.6rem;
+  margin-bottom: 30px;
+  color: #ffffff;
+  text-shadow: 0 0 10px #5e17eb;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 10px;
+  background-color: #2f2f2f;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  transition: transform 0.2s;
+}
+
+input:focus {
+  transform: scale(1.05);
+  border: 2px solid #a94eff;
+}
+
+.login-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 18px;
+  background: linear-gradient(90deg, #5e17eb, #a94eff);
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.login-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px #550bff, 0 0 25px #550bff;
+}
+
+.error-message {
+  color: #ff4d4d;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+.password-wrapper {
+  position: relative;
+}
+
+.toggle-eye {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #aaa;
+  user-select: none;
+  transition: color 0.3s;
+}
+
+.toggle-eye:hover {
+  color: #a94eff;
+}
+
+.remember-me {
+  text-align: left;
+  margin-top: 10px;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+.remember-me input {
+  margin-right: 6px;
+  accent-color: #a94eff;
+}
+.login-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 18px;
+  background: linear-gradient(90deg, #5e17eb, #a94eff);
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+} */
+.login-container {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.login-box {
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid #3b009b;
+  border-radius: 20px;
+  box-shadow: 0 0 25px #3b009b;
+  padding: 40px 30px;
+  width: 320px;
+  backdrop-filter: blur(12px);
+  text-align: center;
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 25px #a94eff, 0 0 50px #5e17eb;
+  }
+  50% {
+    box-shadow: 0 0 15px #a94eff, 0 0 30px #a94eff;
+  }
+}
+
+.login-heading {
+  font-size: 1.6rem;
+  margin-bottom: 30px;
+  color: #ffffff;
+  text-shadow: 0 0 10px #5e17eb;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 10px;
+  background-color: #2f2f2f;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  transition: transform 0.2s;
+}
+
+input:focus {
+  transform: scale(1.05);
+  border: 2px solid #a94eff;
+}
+
+.login-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 18px;
+  background: linear-gradient(90deg, #5e17eb, #a94eff);
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.login-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px #550bff, 0 0 25px #550bff;
+}
+
+.error-message {
+  color: #ff4d4d;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.toggle-eye {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #aaa;
+  user-select: none;
+  transition: color 0.3s;
+}
+
+.toggle-eye:hover {
+  color: #a94eff;
+}
+
+.remember-me {
+  text-align: left;
+  margin-top: 10px;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+.remember-me input {
+  margin-right: 6px;
+  accent-color: #a94eff;
+}
