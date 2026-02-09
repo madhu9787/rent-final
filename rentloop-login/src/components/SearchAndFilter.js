@@ -1,436 +1,172 @@
-// import React, { useState } from "react";
-// import "./SearchAndFilter.css";
-
-// const categories = [
-//   { name: "Vehicles", icon: "📦" },
-//   { name: "Home Appliances", icon: "📺" },
-//   { name: "Gadgets & Electronics", icon: "📱" },
-//   { name: "Fashion & Clothing", icon: "👗" },
-//   { name: "Event Suppliers", icon: "🎪" },
-//   { name: "Tools & Equipment", icon: "🛠" },
-//   { name: "Travel & Luggage", icon: "🧳" },
-//   { name: "Furniture", icon: "🪑" },
-//   { name: "Baby Products", icon: "🍼" },
-//   { name: "Books & Stationery", icon: "📚" },
-// ];
-
-// const SearchAndFilter = () => {
-//   const [searchTerm, setSearchTerm] = useState("");
-
-//   const filteredCategories = categories.filter((cat) =>
-//     cat.name.toLowerCase().includes(searchTerm.toLowerCase())
-//   );
-
-//   return (
-//     <div className="search-container">
-//       <div className="animated-header">Explore by Category ✨</div>
-
-//       <input
-//         type="text"
-//         placeholder="Search category..."
-//         value={searchTerm}
-//         onChange={(e) => setSearchTerm(e.target.value)}
-//         className="search-box"
-//       />
-
-//       <div className="category-card-grid">
-//         {filteredCategories.map((category, index) => (
-//           <div key={index} className="category-card">
-//             <div className="category-icon">{category.icon}</div>
-//             <div className="category-name">{category.name}</div>
-//           </div>
-//         ))}
-//       </div>
-
-//       <div className="floating-decor">🎈</div>
-//       <div className="floating-decor two">✨</div>
-//     </div>
-//   );
-// };
-
-// export default SearchAndFilter;
-// import React, { useState } from "react";
-// import "./SearchAndFilter.css";
-
-// const allCategories = [
-//   { name: "Vehicles", icon: "🚗" },
-//   { name: "Home Appliances", icon: "📺" },
-//   { name: "Gadgets & Electronics", icon: "📱" },
-//   { name: "Fashion & Clothing", icon: "👗" },
-//   { name: "Event Suppliers", icon: "🎪" },
-//   { name: "Tools & Equipment", icon: "🛠️" },
-//   { name: "Travel & Luggage", icon: "🧳" },
-//   { name: "Furniture", icon: "🪑" },
-//   { name: "Baby Products", icon: "🍼" },
-//   { name: "Books & Stationery", icon: "📚" },
-//   { name: "Sports & Fitness", icon: "🏋️‍♂️" },
-//   { name: "Gaming", icon: "🎮" },
-//   { name: "Musical Instruments", icon: "🎸" },
-//   { name: "Pet Supplies", icon: "🐾" },
-//   { name: "Camping & Outdoor", icon: "🏕️" },
-//   { name: "Beauty Products", icon: "💄" }
-// ];
-
-// const SearchAndFilter = () => {
-//   const [searchTerm, setSearchTerm] = useState("");
-//   const [showAll, setShowAll] = useState(false);
-
-//   const filtered = allCategories.filter((cat) =>
-//     cat.name.toLowerCase().includes(searchTerm.toLowerCase())
-//   );
-
-//   const visibleCategories = showAll ? filtered : filtered.slice(0, 10);
-
-//   return (
-//     <div className="search-container">
-//       <div className="animated-header">✨ Explore by Category ✨</div>
-
-//       <input
-//         type="text"
-//         placeholder="Search any category..."
-//         value={searchTerm}
-//         onChange={(e) => setSearchTerm(e.target.value)}
-//         className="search-box"
-//       />
-
-//       <div className="category-card-grid">
-//         {visibleCategories.map((category, index) => (
-//           <div key={index} className="category-card">
-//             <div className="category-icon">{category.icon}</div>
-//             <div className="category-name">{category.name}</div>
-//           </div>
-//         ))}
-//       </div>
-
-//       {!showAll && filtered.length > 10 && (
-//         <button className="view-more-btn" onClick={() => setShowAll(true)}>
-//           View More ➕
-//         </button>
-//       )}
-
-//       <div className="floating-decor">🎈</div>
-//       <div className="floating-decor two">🌟</div>
-//     </div>
-//   );
-// };
-
-// export default SearchAndFilter;
-// import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import "./SearchAndFilter.css";
-
-// const categories = [
-//   { name: "Vehicles", icon: "📦" },
-//   { name: "Home Appliances", icon: "📺" },
-//   { name: "Gadgets & Electronics", icon: "📱" },
-//   { name: "Fashion & Clothing", icon: "👗" },
-//   { name: "Event Suppliers", icon: "🎪" },
-//   { name: "Tools & Equipment", icon: "🛠" },
-//   { name: "Travel & Luggage", icon: "🧳" },
-//   { name: "Furniture", icon: "🪑" },
-//   { name: "Baby Products", icon: "🍼" },
-//   { name: "Books & Stationery", icon: "📚" },
-// ];
-
-// const SearchAndFilter = () => {
-//   const navigate = useNavigate();
-//   const [searchTerm, setSearchTerm] = useState("");
-//   const [showAll, setShowAll] = useState(false);
-
-//   const filteredCategories = categories.filter((cat) =>
-//     cat.name.toLowerCase().includes(searchTerm.toLowerCase())
-//   );
-
-//   const handleClick = (categoryName) => {
-//     // Navigate to the corresponding category page
-//     if (categoryName === "Vehicles") navigate("/category-items");
-//     else if (categoryName === "Home Appliances") navigate("/home-appliances");
-//     else if (categoryName === "Gadgets & Electronics") navigate("/gadgets-electronics");
-//     else if (categoryName === "Fashion & Clothing") navigate("/fashion-clothing");
-//     else if (categoryName === "Event Suppliers") navigate("/event-suppliers");
-//     else if (categoryName === "Tools & Equipment") navigate("/tools-equipment");
-//     else if (categoryName === "Travel & Luggage") navigate("/travel-luggage");
-//     else if (categoryName === "Furniture") navigate("/furniture");
-//     else if (categoryName === "Baby Products") navigate("/baby-products");
-//     else if (categoryName === "Books & Stationery") navigate("/books-stationery");
-//   };
-
-//   const visibleCategories = showAll ? filteredCategories : filteredCategories.slice(0, 6);
-
-//   return (
-//     <div className="search-container">
-//       <div className="animated-header">Explore by Category ✨</div>
-
-//       <input
-//         type="text"
-//         placeholder="Search category..."
-//         value={searchTerm}
-//         onChange={(e) => setSearchTerm(e.target.value)}
-//         className="search-box"
-//       />
-
-//       <div className="category-card-grid">
-//         {visibleCategories.map((category, index) => (
-//           <div
-//             key={index}
-//             className="category-card"
-//             onClick={() => handleClick(category.name)}
-//           >
-//             <div className="category-icon">{category.icon}</div>
-//             <div className="category-name">{category.name}</div>
-//           </div>
-//         ))}
-//       </div>
-
-//       {!showAll && (
-//         <button className="view-more-btn" onClick={() => setShowAll(true)}>
-//           View More ➕
-//         </button>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default SearchAndFilter;
-// import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import "./SearchAndFilter.css";
-
-// const categories = [
-//   { name: "Vehicles", icon: "📦" },
-//   { name: "Home Appliances", icon: "📺" },
-//   { name: "Gadgets & Electronics", icon: "📱" },
-//   { name: "Fashion & Clothing", icon: "👗" },
-//   { name: "Event Suppliers", icon: "🎪" },
-//   { name: "Tools & Equipment", icon: "🛠" },
-//   { name: "Travel & Luggage", icon: "🧳" },
-//   { name: "Furniture", icon: "🪑" },
-//   { name: "Baby Products", icon: "🍼" },
-//   { name: "Books & Stationery", icon: "📚" },
-// ];
-
-// const SearchAndFilter = () => {
-//   const navigate = useNavigate();
-//   const [searchTerm, setSearchTerm] = useState("");
-//   const [showAll, setShowAll] = useState(false);
-
-//   const filteredCategories = categories.filter((cat) =>
-//     cat.name.toLowerCase().includes(searchTerm.toLowerCase())
-//   );
-
-//   const handleClick = (categoryName) => {
-//     // Navigate to the corresponding category page
-//     if (categoryName === "Vehicles") navigate("/category-items");
-//     else if (categoryName === "Home Appliances") navigate("/home-appliances");
-//     else if (categoryName === "Gadgets & Electronics") navigate("/gadgets-electronics");
-//     else if (categoryName === "Fashion & Clothing") navigate("/fashion-clothing");
-//     else if (categoryName === "Event Suppliers") navigate("/event-suppliers");
-//     else if (categoryName === "Tools & Equipment") navigate("/tools-equipment");
-//     else if (categoryName === "Travel & Luggage") navigate("/travel-luggage");
-//     else if (categoryName === "Furniture") navigate("/furniture");
-//     else if (categoryName === "Baby Products") navigate("/baby-products");
-//     else if (categoryName === "Books & Stationery") navigate("/books-stationery");
-//   };
-
-//   const visibleCategories = showAll ? filteredCategories : filteredCategories.slice(0, 6);
-
-//   return (
-//     <div className="search-container">
-//       <div className="animated-header">Explore by Category ✨</div>
-
-//       <input
-//         type="text"
-//         placeholder="Search category..."
-//         value={searchTerm}
-//         onChange={(e) => setSearchTerm(e.target.value)}
-//         className="search-box"
-//       />
-
-//       <div className="category-card-grid">
-//         {visibleCategories.map((category, index) => (
-//           <div
-//             key={index}
-//             className="category-card"
-//             onClick={() => handleClick(category.name)}
-//           >
-//             <div className="category-icon">{category.icon}</div>
-//             <div className="category-name">{category.name}</div>
-//           </div>
-//         ))}
-//       </div>
-
-//       {!showAll && (
-//         <button className="view-more-btn" onClick={() => setShowAll(true)}>
-//           View More ➕
-//         </button>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default SearchAndFilter;
-
-
-//new
-
-
-
-
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Navbar from "./Navbar";
 import "./SearchAndFilter.css";
-
-const categories = [
-  { name: "Vehicles", icon: "📦", path: "/category-items" },
-  { name: "Home Appliances", icon: "📺", path: "/home-appliances" },
-  { name: "Gadgets & Electronics", icon: "📱", path: "/gadgets-electronics" },
-  { name: "Fashion & Clothing", icon: "👗", path: "/fashion-clothing" },
-  { name: "Event Suppliers", icon: "🎪", path: "/event-supplies" },
-  { name: "Tools & Equipment", icon: "🛠", path: "/tools-equipment" },
-  { name: "Travel & Luggage", icon: "🧳", path: "/travel-luggage" },
-  { name: "Furniture", icon: "🪑", path: "/furniture" },
-  { name: "Baby Products", icon: "🍼", path: "/baby-products" },
-  { name: "Books & Stationery", icon: "📚", path: "/books-stationery" },
-];
+import "./DiscoverItems.css"; // Reuse card styles
 
 const SearchAndFilter = () => {
-  const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [showAll, setShowAll] = useState(false);
+  const [items, setItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [filters, setFilters] = useState({
+    search: "",
+    category: "All",
+    minPrice: "",
+    maxPrice: "",
+    sort: "newest"
+  });
 
-  const filteredCategories = categories.filter((cat) =>
-    cat.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/items");
+        setItems(res.data);
+        setFilteredItems(res.data);
+      } catch (err) {
+        console.error("Error fetching items:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchItems();
+  }, []);
 
-  const visibleCategories = showAll ? filteredCategories : filteredCategories.slice(0, 6);
+  useEffect(() => {
+    let results = [...items];
 
-  const handleClick = (path) => {
-    navigate(path);
+    // Search text
+    if (filters.search) {
+      results = results.filter(item =>
+        item.name.toLowerCase().includes(filters.search.toLowerCase()) ||
+        item.description.toLowerCase().includes(filters.search.toLowerCase())
+      );
+    }
+
+    // Category
+    if (filters.category !== "All") {
+      results = results.filter(item => item.category === filters.category);
+    }
+
+    // Price
+    if (filters.minPrice) {
+      results = results.filter(item => item.pricePerDay >= Number(filters.minPrice));
+    }
+    if (filters.maxPrice) {
+      results = results.filter(item => item.pricePerDay <= Number(filters.maxPrice));
+    }
+
+    // Sort
+    if (filters.sort === "price-low") {
+      results.sort((a, b) => a.pricePerDay - b.pricePerDay);
+    } else if (filters.sort === "price-high") {
+      results.sort((a, b) => b.pricePerDay - a.pricePerDay);
+    } else {
+      // Newest first
+      results.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    }
+
+    setFilteredItems(results);
+  }, [filters, items]);
+
+  const handleFilterChange = (e) => {
+    setFilters({ ...filters, [e.target.name]: e.target.value });
+  };
+
+  const clearFilters = () => {
+    setFilters({
+      search: "",
+      category: "All",
+      minPrice: "",
+      maxPrice: "",
+      sort: "newest"
+    });
   };
 
   return (
-    <div className="search-container">
-      <div className="animated-header">Explore by Category ✨</div>
-
-      <input
-        type="text"
-        placeholder="Search category..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="search-box"
-      />
-
-      <div className="category-card-grid">
-        {visibleCategories.map((category, index) => (
-          <div
-            key={index}
-            className="category-card"
-            onClick={() => handleClick(category.path)}
-          >
-            <div className="category-icon">{category.icon}</div>
-            <div className="category-name">{category.name}</div>
-          </div>
-        ))}
+    <div className="search-dashboard-container">
+      <Navbar />
+      <div className="discover-header">
+        <h1 className="discover-title">Smart Search</h1>
+        <p>Find exactly what you need with advanced filters.</p>
       </div>
 
-      {!showAll && filteredCategories.length > 6 && (
-        <button className="view-more-btn" onClick={() => setShowAll(true)}>
-          View More ➕
-        </button>
-      )}
+      <div className="search-controls">
+        <div className="control-group">
+          <label>Keywords</label>
+          <input
+            type="text"
+            name="search"
+            placeholder="Search items..."
+            value={filters.search}
+            onChange={handleFilterChange}
+          />
+        </div>
 
-      {/* Floating decorations */}
-      <div className="floating-decor">🎈</div>
-      <div className="floating-decor two">✨</div>
+        <div className="control-group">
+          <label>Category</label>
+          <select name="category" value={filters.category} onChange={handleFilterChange}>
+            {["All", "Electronics", "Furniture", "Fashion", "Books", "Tools", "Vehicles"].map(cat => (
+              <option key={cat} value={cat}>{cat}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className="control-group">
+          <label>Price Range (₹)</label>
+          <div className="price-inputs">
+            <input type="number" name="minPrice" placeholder="Min" value={filters.minPrice} onChange={handleFilterChange} />
+            <span>-</span>
+            <input type="number" name="maxPrice" placeholder="Max" value={filters.maxPrice} onChange={handleFilterChange} />
+          </div>
+        </div>
+
+        <div className="control-group">
+          <label>Sort By</label>
+          <select name="sort" value={filters.sort} onChange={handleFilterChange}>
+            <option value="newest">Newest First</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+          </select>
+        </div>
+
+        <button className="clear-btn" onClick={clearFilters}>Clear All</button>
+      </div>
+
+      {loading ? (
+        <div style={{ textAlign: "center", color: "white" }}>Analyzing data...</div>
+      ) : (
+        <div className="search-results-grid">
+          {filteredItems.length === 0 ? (
+            <div style={{ gridColumn: "1/-1", textAlign: "center", opacity: 0.7 }}>
+              No items match your criteria. Try adjusting filters.
+            </div>
+          ) : (
+            filteredItems.map(item => (
+              <div key={item._id} className="discover-card">
+                <div className="card-img-wrapper">
+                  {item.images && item.images.length > 0 ? (
+                    <img src={item.images[0]} alt={item.name} className="card-img" />
+                  ) : (
+                    <div className="no-img-placeholder"><i className="fas fa-box"></i></div>
+                  )}
+                </div>
+                <div className="card-body">
+                  <span className="item-category">{item.category}</span>
+                  <h3 className="item-title">{item.name}</h3>
+                  <div className="item-price">₹{item.pricePerDay} / day</div>
+                </div>
+                <div className="card-actions" style={{ padding: "0 20px 20px" }}>
+                  <button className="action-btn rent-btn" style={{ flex: 1 }} onClick={() => window.location.href = "/discover-items"}>
+                    View in Discover
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      )}
     </div>
   );
 };
 
 export default SearchAndFilter;
-
-//old
-
-
-// import React, { useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
-// import axios from "axios";
-// import "./SearchAndFilter.css";
-
-// const SearchAndFilter = () => {
-//   const navigate = useNavigate();
-//   const [categories, setCategories] = useState([]);
-//   const [searchTerm, setSearchTerm] = useState("");
-//   const [showAll, setShowAll] = useState(false);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState("");
-
-//   useEffect(() => {
-//     const fetchCategories = async () => {
-//       setLoading(true);
-//       setError("");
-//       try {
-//         // Replace with your backend endpoint
-//         const response = await axios.get("/api/categories");
-//         setCategories(response.data.categories || []);
-//       } catch (err) {
-//         console.error(err);
-//         setError("Failed to fetch categories. Please try again later.");
-//       }
-//       setLoading(false);
-//     };
-
-//     fetchCategories();
-//   }, []);
-
-//   const filteredCategories = categories.filter((cat) =>
-//     cat.name.toLowerCase().includes(searchTerm.toLowerCase())
-//   );
-
-//   const visibleCategories = showAll ? filteredCategories : filteredCategories.slice(0, 6);
-
-//   const handleClick = (path) => {
-//     navigate(path);
-//   };
-
-//   if (loading) return <div className="loading">Loading categories...</div>;
-//   if (error) return <div className="error">{error}</div>;
-
-//   return (
-//     <div className="search-container">
-//       <div className="animated-header">Explore by Category ✨</div>
-
-//       <input
-//         type="text"
-//         placeholder="Search category..."
-//         value={searchTerm}
-//         onChange={(e) => setSearchTerm(e.target.value)}
-//         className="search-box"
-//       />
-
-//       <div className="category-card-grid">
-//         {visibleCategories.map((category, index) => (
-//           <div
-//             key={index}
-//             className="category-card"
-//             onClick={() => handleClick(category.path)}
-//           >
-//             <div className="category-icon">{category.icon}</div>
-//             <div className="category-name">{category.name}</div>
-//           </div>
-//         ))}
-//       </div>
-
-//       {!showAll && filteredCategories.length > 6 && (
-//         <button className="view-more-btn" onClick={() => setShowAll(true)}>
-//           View More ➕
-//         </button>
-//       )}
-
-//       {/* Floating decorations */}
-//       <div className="floating-decor">🎈</div>
-//       <div className="floating-decor two">✨</div>
-//     </div>
-//   );
-// };
-
-// export default SearchAndFilter;

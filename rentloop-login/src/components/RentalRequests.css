@@ -1,0 +1,134 @@
+.requests-container {
+    min-height: 100vh;
+    background: radial-gradient(circle at top center, #1f0133 0%, #000000 80%);
+    color: #ffffff;
+    padding: 40px 5%;
+}
+
+.requests-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.requests-header h2 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2.5rem;
+    color: #ffd700;
+}
+
+.section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.8rem;
+    color: #ffd700;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+    padding-bottom: 10px;
+}
+
+.empty-msg {
+    text-align: center;
+    opacity: 0.6;
+    padding: 20px;
+}
+
+.requests-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.request-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.request-card:hover {
+    border-color: #ffd700;
+}
+
+.request-info {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.req-item-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.request-status {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.status-badge {
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.status-badge.pending {
+    background: rgba(255, 165, 0, 0.2);
+    color: orange;
+}
+
+.status-badge.accepted {
+    background: rgba(0, 255, 0, 0.2);
+    color: #00ff00;
+}
+
+.status-badge.rejected {
+    background: rgba(255, 0, 0, 0.2);
+    color: #ff4757;
+}
+
+.status-badge.picked_up {
+    background: rgba(0, 191, 255, 0.2);
+    color: #00bfff;
+}
+
+.status-badge.returned {
+    background: rgba(144, 238, 144, 0.2);
+    color: #90ee90;
+}
+
+.status-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.accept-btn {
+    padding: 8px 20px;
+    background: #00ff00;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.reject-btn {
+    padding: 8px 20px;
+    background: #ff4757;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+}

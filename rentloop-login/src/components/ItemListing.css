@@ -1,104 +1,112 @@
-/* Container full screen with dark purple background */
-.item-listing-container {
-  min-height: 100vh; /* Full viewport height */
-  padding: 40px 20px;
-  background: #3b0a71; /* Dark purple background */
-  text-align: center;
-  box-sizing: border-box;
-  font-family: 'Poppins', 'Segoe UI', sans-serif;
-  color: #fff; /* default text color for headings */
-}
-
-/* Headings */
-.item-heading {
-  font-size: 32px;
-  color: #ffffff; /* Light golden for contrast */
-  margin-bottom: 10px;
-  font-weight: 700;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
-}
-
-.item-subheading {
-  font-size: 18px;
+.listing-container {
+  min-height: 100vh;
+  background: radial-gradient(circle at top center, #1f0133 0%, #000000 80%);
   color: #ffffff;
-  margin-bottom: 40px;
-  font-weight: 500;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-}
-
-/* Category Grid */
-.category-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 25px;
-  background: #3b0a71; /* ensures space between cards stays dark purple */
-  padding: 20px;
-  border-radius: 15px;
-}
-
-/* Category Cards */
-.category-cards {
-  background-color: #ffffff; /* White interior */
-  border-radius: 15px;
-  width: 160px;
-  padding: 25px 15px;
-  cursor: pointer;
-  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.6s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  padding: 40px 5%;
   font-family: 'Poppins', sans-serif;
+}
+
+.listing-form-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.listing-form-wrapper h2 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 2.5rem;
+  color: #ffd700;
   text-align: center;
+  margin-bottom: 30px;
 }
 
-/* Hover: smooth golden shimmer gradient */
-.category-card:hover {
-  background: linear-gradient(135deg, #ffd700, #fff8b0, #ffd700);
-  background-size: 400% 400%;
-  animation: shimmer 2s ease infinite;
-  transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(255,215,0,0.6);
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
-@keyframes shimmer {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.full-width {
+  grid-column: span 2;
 }
 
-/* Icons and Text inside card */
-.category-icon {
-  font-size: 40px;
-  margin-bottom: 12px;
-  color: #3b0a71; /* Dark purple icons for contrast inside white card */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.category-name {
-  font-size: 16px;
+.form-group label {
+  font-weight: 600;
+  color: #ffd700;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #ffd700;
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
+.form-group select option {
+  background: #1f0133;
+  color: white;
+  padding: 10px;
+}
+
+.file-input {
+  padding: 10px 0;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  background: transparent;
+  border: 1px solid #ffd700;
+  color: #ffd700;
+  font-size: 1.1rem;
   font-weight: 700;
-  color: #3b0a71; /* Dark purple text inside card */
-  transition: color 0.3s ease;
-}
-
-.category-card:hover .category-name {
-  color: #fdfdfd; /* text turns white on hover */
-}
-
-/* View More Button */
-.view-more-btn {
-  margin-top: 30px;
-  padding: 12px 24px;
-  background-color: #fbff00;
-  color: #3b0a71; /* Dark purple text */
-  border: none;
-  border-radius: 10px;
+  border-radius: 30px;
   cursor: pointer;
-  font-weight: 700;
-  font-size: 16px;
-  transition: all 0.4s ease;
+  transition: all 0.3s;
+  margin-top: 20px;
 }
 
-.view-more-btn:hover {
-  background-color: #fff700;
-  transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(135, 94, 168, 0.6);
+.submit-btn:hover {
+  background: #ffd700;
+  color: black;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.status-msg {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full-width {
+    grid-column: span 1;
+  }
 }

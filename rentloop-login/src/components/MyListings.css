@@ -1,0 +1,266 @@
+.mylistings-container {
+    min-height: 100vh;
+    background: radial-gradient(circle at top center, #1f0133 0%, #000000 80%);
+    color: #ffffff;
+    padding: 40px 5%;
+}
+
+.mylistings-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.mylistings-header h2 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2.5rem;
+    color: #ffd700;
+}
+
+.listings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.listing-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    transition: transform 0.3s;
+}
+
+.listing-card:hover {
+    transform: translateY(-5px);
+    border-color: #ffd700;
+}
+
+.listing-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.no-image {
+    width: 100%;
+    height: 180px;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.listing-details h3 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.listing-category {
+    font-size: 0.9rem;
+    color: #ffd700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.listing-price {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+.listing-status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.status-active {
+    background: rgba(0, 255, 0, 0.2);
+    color: #00ff00;
+}
+
+/* Action Buttons */
+.listing-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-edit,
+.btn-delete {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-edit {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+
+.btn-edit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-delete {
+    background: linear-gradient(135deg, #f56565, #c53030);
+    color: white;
+}
+
+.btn-delete:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(245, 101, 101, 0.4);
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1f0133, #2d1b4e);
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.modal-content h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #ffd700;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-content label {
+    color: #ffd700;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.modal-content input,
+.modal-content textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-size: 14px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+    outline: none;
+    border-color: #ffd700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.modal-content input::placeholder,
+.modal-content textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-save,
+.btn-cancel {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-save {
+    background: linear-gradient(135deg, #48bb78, #38a169);
+    color: white;
+}
+
+.btn-save:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(72, 187, 120, 0.4);
+}
+
+.btn-cancel {
+    background: linear-gradient(135deg, #718096, #4a5568);
+    color: white;
+}
+
+.btn-cancel:hover {
+    background: linear-gradient(135deg, #4a5568, #2d3748);
+}
+
+/* Scrollbar for modal */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #ffd700;
+    border-radius: 10px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .listings-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+}

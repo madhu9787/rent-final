@@ -1,218 +1,194 @@
-
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // <-- import navigate
+import axios from "axios";
+import Navbar from "./Navbar";
 import "./ItemListing.css";
 
-const allCategories = [
-  { name: "Vehicles", icon: "🛵" },
-  { name: "Home Appliances", icon: "🏠" },
-  { name: "Gadgets & Electronics", icon: "🎮" },
-  { name: "Fashion & Clothing", icon: "👗" },
-  { name: "Books & Stationery", icon: "📚" },
-  { name: "Event Supplies", icon: "🎉" },
-  { name: "Tools & Equipment", icon: "🧰" },
-  { name: "Travel & Luggage", icon: "🧳" },
-  { name: "Furniture", icon: "🪑" },
-  { name: "Baby Products", icon: "🧒" },
-
-  { name: "Pet Accessories", icon: "🐾" },
-  { name: "Cameras & Lenses", icon: "📷" },
-  { name: "Bikes & Bicycles", icon: "🚴‍♂️" },
-  { name: "Kitchenware", icon: "🍽️" },
-  { name: "Gaming Consoles", icon: "🕹️" },
-  { name: "Gardening Tools", icon: "🪴" },
-  { name: "Camping Gear", icon: "🏕️" },
-  { name: "Medical Equipment", icon: "🏥" },
-  { name: "Costumes", icon: "🥸" },
-  { name: "Drones", icon: "🛸" }
-];
-
 const ItemListing = () => {
-  const [showAll, setShowAll] = useState(false);
-  const navigate = useNavigate(); // <-- useNavigate hook
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+    pricePerHour: "",
+    pricePerDay: "",
+    category: "",
+    location: "",
+    images: "", // Storing Base64 string for simplicity
+  });
+  const [msg, setMsg] = useState("");
 
-  const visibleCategories = showAll ? allCategories : allCategories.slice(0, 10);
-const handleCategoryClick = (categoryName) => {
-  if (categoryName === "Vehicles") {
-    navigate("/category-items");
-  } else if (categoryName === "Home Appliances") {
-    navigate("/home-appliances");
-  } else if (categoryName === "Gadgets & Electronics") {
-    navigate("/gadgets-electronics");
-  } else if (categoryName === "Fashion & Clothing") {
-    navigate("/fashion-clothing"); // ✅ newly added
-  }
-  else if (categoryName === "Books & Stationery") {
-  navigate("/books-stationery");
-}
-   else if (categoryName === "Event Supplies") {
-    navigate("/event-supplies");
-  } 
-   else if (categoryName === "Tools & Equipment") {
-    navigate("/tools-equipment");
-  } 
-  else if (categoryName === "Travel & Luggage") {
-  navigate("/travel-luggage");
-}
-else if (categoryName === "Furniture") {
-    navigate("/furniture"); // ✅ newly added
-  } 
-else if (categoryName === "Baby Products") {
-    navigate("/baby-products"); // ✅ NEW
-  }
- else {
-    alert(`You selected: ${categoryName}`);
-  }
-};
+  // Get current user from local storage
+  const user = JSON.parse(localStorage.getItem("user"));
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData({ ...formData, images: [reader.result] }); // Store as array of strings
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
+  const suggestPrice = async () => {
+    if (!formData.category) {
+      alert("Please select a category first.");
+      return;
+    }
+    try {
+      const res = await axios.get(`http://localhost:5000/api/items/suggest-price/${formData.category}`);
+      setFormData({
+        ...formData,
+        pricePerDay: res.data.avgDay,
+        pricePerHour: res.data.avgHour
+      });
+      setMsg(`✨ AI Suggestion: ${res.data.message}`);
+    } catch (err) {
+      console.error("Price suggestion error:", err);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMsg("");
+    if (!user) {
+      setMsg("❌ You must be logged in to list an item.");
+      return;
+    }
+
+    try {
+      const payload = { ...formData, owner: user.id };
+      await axios.post("http://localhost:5000/api/items", payload);
+      setMsg("✅ Item listed successfully!");
+      setFormData({
+        name: "",
+        description: "",
+        pricePerHour: "",
+        pricePerDay: "",
+        category: "",
+        location: "",
+        images: "",
+      });
+    } catch (err) {
+      console.error(err);
+      setMsg("❌ Failed to list item. Please try again.");
+    }
+  };
 
   return (
-    <div className="item-listing-container">
-      <h2 className="item-heading shimmer-text">
-        Let’s Find What You Need Today 🔍
-      </h2>
-      <p className="item-subheading">Choose a category to explore or list an item</p>
-
-      <div className="category-grid">
-        {visibleCategories.map((category, index) => (
-          <div
-            key={index}
-            className="category-cards"
-            onClick={() => handleCategoryClick(category.name)}
-          >
-            <div className="category-icon">{category.icon}</div>
-            <div className="category-name">{category.name}</div>
+    <div className="listing-container">
+      <Navbar />
+      <div className="listing-form-wrapper">
+        <h2>List Your Item</h2>
+        <form onSubmit={handleSubmit} className="form-grid">
+          <div className="form-group full-width">
+            <label>Item Name</label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="e.g. GoPro Hero 10"
+              required
+            />
           </div>
-        ))}a
-      </div>
 
-      {!showAll && (
-        <button className="view-more-btn" onClick={() => setShowAll(true)}>
-          View More ➕
-        </button>
-      )}
+          <div className="form-group full-width">
+            <label>Description</label>
+            <textarea
+              name="description"
+              rows="4"
+              value={formData.description}
+              onChange={handleChange}
+              placeholder="Describe the condition, features, etc."
+              required
+            ></textarea>
+          </div>
+
+          <div className="form-group">
+            <label>Category</label>
+            <select name="category" value={formData.category} onChange={handleChange} required>
+              <option value="">Select Category</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Furniture">Furniture</option>
+              <option value="Fashion">Fashion</option>
+              <option value="Books">Books</option>
+              <option value="Tools">Tools</option>
+              <option value="Vehicles">Vehicles</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label>Location</label>
+            <input
+              type="text"
+              name="location"
+              value={formData.location}
+              onChange={handleChange}
+              placeholder="City or Area"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Price / Hour (₹)</label>
+            <input
+              type="number"
+              name="pricePerHour"
+              value={formData.pricePerHour}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Price / Day (₹)</label>
+            <div style={{ display: "flex", gap: "10px" }}>
+              <input
+                type="number"
+                name="pricePerDay"
+                style={{ flex: 1 }}
+                value={formData.pricePerDay}
+                onChange={handleChange}
+                required
+              />
+              <button
+                type="button"
+                className="ai-suggest-btn"
+                onClick={suggestPrice}
+                style={{
+                  background: "linear-gradient(45deg, #FFD700, #FFA500)",
+                  color: "black",
+                  border: "none",
+                  padding: "0 15px",
+                  borderRadius: "8px",
+                  fontWeight: "700",
+                  fontSize: "0.8rem",
+                  cursor: "pointer"
+                }}
+              >
+                AI Suggest
+              </button>
+            </div>
+          </div>
+
+          <div className="form-group full-width">
+            <label>Upload Image</label>
+            <input type="file" accept="image/*" onChange={handleImageUpload} className="file-input" />
+          </div>
+
+          <div className="form-group full-width">
+            <button type="submit" className="submit-btn">Publish Listing</button>
+          </div>
+        </form>
+        {msg && <p className="status-msg">{msg}</p>}
+      </div>
     </div>
   );
 };
 
 export default ItemListing;
-
-
-// import React, { useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
-// import axios from "axios"; // <-- import Axios
-// import "./ItemListing.css";
-
-// const ItemListing = () => {
-//   const [allCategories, setAllCategories] = useState([]);
-//   const [showAll, setShowAll] = useState(false);
-//   const navigate = useNavigate();
-
-//   const visibleCategories = showAll ? allCategories : allCategories.slice(0, 10);
-
-//   const handleCategoryClick = (categoryName) => {
-//     switch (categoryName) {
-//       case "Vehicles":
-//         navigate("/category-items");
-//         break;
-//       case "Home Appliances":
-//         navigate("/home-appliances");
-//         break;
-//       case "Gadgets & Electronics":
-//         navigate("/gadgets-electronics");
-//         break;
-//       case "Fashion & Clothing":
-//         navigate("/fashion-clothing");
-//         break;
-//       case "Books & Stationery":
-//         navigate("/books-stationery");
-//         break;
-//       case "Event Supplies":
-//         navigate("/event-supplies");
-//         break;
-//       case "Tools & Equipment":
-//         navigate("/tools-equipment");
-//         break;
-//       case "Travel & Luggage":
-//         navigate("/travel-luggage");
-//         break;
-//       case "Furniture":
-//         navigate("/furniture");
-//         break;
-//       case "Baby Products":
-//         navigate("/baby-products");
-//         break;
-//       default:
-//         alert(`You selected: ${categoryName}`);
-//     }
-//   };
-
-//   // Fetch categories from API
-//   useEffect(() => {
-//     const fetchCategories = async () => {
-//       try {
-//         const response = await axios.get("/api/categories"); // <-- your backend endpoint
-//         setAllCategories(response.data);
-//       } catch (error) {
-//         console.error("Error fetching categories:", error);
-//         // Fallback if API fails
-//         setAllCategories([
-//           { name: "Vehicles", icon: "🛵" },
-//           { name: "Home Appliances", icon: "🏠" },
-//           { name: "Gadgets & Electronics", icon: "🎮" },
-//           { name: "Fashion & Clothing", icon: "👗" },
-//           { name: "Books & Stationery", icon: "📚" },
-//           { name: "Event Supplies", icon: "🎉" },
-//           { name: "Tools & Equipment", icon: "🧰" },
-//           { name: "Travel & Luggage", icon: "🧳" },
-//           { name: "Furniture", icon: "🪑" },
-//           { name: "Baby Products", icon: "🧒" },
-//           { name: "Pet Accessories", icon: "🐾" },
-//           { name: "Cameras & Lenses", icon: "📷" },
-//           { name: "Bikes & Bicycles", icon: "🚴‍♂️" },
-//           { name: "Kitchenware", icon: "🍽️" },
-//           { name: "Gaming Consoles", icon: "🕹️" },
-//           { name: "Gardening Tools", icon: "🪴" },
-//           { name: "Camping Gear", icon: "🏕️" },
-//           { name: "Medical Equipment", icon: "🏥" },
-//           { name: "Costumes", icon: "🥸" },
-//           { name: "Drones", icon: "🛸" },
-//         ]);
-//       }
-//     };
-
-//     fetchCategories();
-//   }, []);
-
-//   return (
-//     <div className="item-listing-container">
-//       <h2 className="item-heading shimmer-text">
-//         Let’s Find What You Need Today 🔍
-//       </h2>
-//       <p className="item-subheading">Choose a category to explore or list an item</p>
-
-//       <div className="category-grid">
-//         {visibleCategories.map((category, index) => (
-//           <div
-//             key={index}
-//             className="category-cards"
-//             onClick={() => handleCategoryClick(category.name)}
-//           >
-//             <div className="category-icon">{category.icon}</div>
-//             <div className="category-name">{category.name}</div>
-//           </div>
-//         ))}
-//       </div>
-
-//       {!showAll && (
-//         <button className="view-more-btn" onClick={() => setShowAll(true)}>
-//           View More ➕
-//         </button>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default ItemListing;

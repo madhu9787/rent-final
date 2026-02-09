@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rajdhani:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+.about-container {
+    min-height: 100vh;
+    background: radial-gradient(circle at top center, #1f0133 0%, #000000 80%);
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.about-content {
+    padding: 60px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-hero {
+    text-align: center;
+    margin-bottom: 60px;
+    animation: fadeInDown 1s ease-out;
+}
+
+.about-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #ffd700, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.about-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.about-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.about-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    transition: transform 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    border-color: #ffd700;
+}
+
+.about-card h2 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2rem;
+    color: #ffd700;
+    margin-bottom: 20px;
+}
+
+.about-card p {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .about-title {
+        font-size: 2.5rem;
+    }
+
+    .about-card {
+        padding: 25px;
+    }
+}
